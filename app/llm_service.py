@@ -35,7 +35,7 @@ def _call_openai(content: str, target_keyword: str) -> dict:
     user_prompt = f"Target keyword: {target_keyword}\n\nContent:\n{content}"
 
     response = client.chat.completions.create(
-        model="gpt-5.6",
+        model="gpt-5.6-sol",
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_prompt},
