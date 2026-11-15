@@ -1,7 +1,8 @@
 # SEO Content Gap Analyzer
 
-🔗 **Live demo:** https://seo-gap-analyzer-987224764162.us-central1.run.app/docs
-📦 **Code:** https://github.com/Sujit-Fab/seo-gap-analyzer
+**Agent skill:** [`skill/seo-gap-analyzer/SKILL.md`](skill/seo-gap-analyzer/SKILL.md) is the SKILL.md version for Claude Code and other AI agents. It compares your content against live search results.
+
+**API demo:** currently offline. You can run the API locally with the steps below; it works in mock mode without API keys.
 
 A small FastAPI service that takes a piece of content and a target keyword,
 uses a real LLM (OpenAI GPT-5.6 Sol) to identify what topics/angles are
