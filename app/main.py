@@ -9,17 +9,35 @@ Run locally:
 Then visit http://127.0.0.1:8000/docs for interactive API docs.
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from starlette.concurrency import run_in_threadpool
 
 from app.firestore_service import get_analysis, save_analysis
 from app.llm_service import analyze_content
 from app.models import AnalyzeRequest, AnalyzeResponse
+from app.visit_log import log_visit
 
 app = FastAPI(
     title="SEO Content Gap Analyzer",
     description="Finds content gaps against a target keyword using an LLM, stores results in Firestore.",
     version="0.1.0",
 )
+
+
+@app.middleware("http")
+async def record_visit(request: Request, call_next):
+    response = await call_next(request)
+    # Logged before the response is returned: Cloud Run only guarantees CPU
+    # while a request is in flight, so a background task could be cut off.
+    await run_in_threadpool(
+        log_visit,
+        request.method,
+        request.url.path,
+        response.status_code,
+        request.headers,
+        request.client.host if request.client else None,
+    )
+    return response
 
 
 @app.get("/")
