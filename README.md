@@ -16,7 +16,8 @@ and then deployed live end-to-end on Google Cloud Run.
 
 ## Try it yourself — no setup required
 
-1. Open the [live docs](https://seo-gap-analyzer-987224764162.us-central1.run.app/docs)
+1.**Agent skill:** [`skill/seo-gap-analyzer/SKILL.md`](skill/seo-gap-analyzer/SKILL.md) is the SKILL.md version for Claude Code and other AI agents. It compares your content against live search results.
+**API demo:** currently offline. You can run the API locally with the steps below; it works in mock mode without API keys.
 2. Expand **POST /analyze** → click "Try it out"
 3. Paste in any content + a target keyword → click "Execute"
 4. Get back a real, structured SEO gap analysis in seconds
